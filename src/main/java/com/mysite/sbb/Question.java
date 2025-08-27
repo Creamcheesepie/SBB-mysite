@@ -18,6 +18,6 @@ public class Question {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    @OneToMany
+    @OneToMany(mappedBy = "question" ,cascade = CascadeType.REMOVE) // 선택적
     private List<Answer> answers;
 }

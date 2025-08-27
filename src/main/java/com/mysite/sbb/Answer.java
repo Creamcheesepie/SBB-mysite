@@ -15,6 +15,6 @@ public class Answer {
     private String subject;
     @Column(columnDefinition = "TEXT")
     private String content;
-    @ManyToOne
+    @ManyToOne // 필수
     private Question question;
 }
