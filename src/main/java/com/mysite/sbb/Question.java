@@ -1,8 +1,14 @@
 package com.mysite.sbb;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.List;
 
 @Entity
+@Getter
+@Setter
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,5 +18,6 @@ public class Question {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-
+    @OneToMany
+    private List<Answer> answers;
 }
