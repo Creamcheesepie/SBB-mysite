@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,6 +19,13 @@ public class Question {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    @OneToMany(mappedBy = "question" ,cascade = CascadeType.REMOVE) // 선택적
-    private List<Answer> answers;
+    @OneToMany(mappedBy = "question", fetch = FetchType.EAGER,cascade = {CascadeType.REMOVE, CascadeType.PERSIST}) // 선택적
+    private List<Answer> answers = new ArrayList<>();
+
+    public void addAnswer(String content) {
+        Answer answer= new Answer();
+        answer.setContent(content);
+        answer.setQuestion(this);
+        answers.add(answer);
+    }
 }

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -98,7 +99,7 @@ class SbbApplicationTests {
     }
 
     @Test
-    @DisplayName("답변 저장")
+    @DisplayName("답변 저장 - Repository 버전")
     void t8() {
         Question q = this.questionRepository.findById(2).get();
 
@@ -107,5 +108,36 @@ class SbbApplicationTests {
         a.setQuestion(q);  // 어떤 질문의 답변인지 알기위해서 Question 객체가 필요하다.
         this.answerRepository.save(a);
     }
+
+    @Test
+    @DisplayName("객체 지향적으로 답변 저장")
+    @Transactional
+    void t9() {
+        Question q = this.questionRepository.findById(2).get();
+
+        Answer answer =new Answer();
+        answer.setContent("답변 내용");
+        answer.setQuestion(q);
+
+        q.getAnswers().add(answer);
+    }
+
+    @Test
+    @DisplayName("객체 지향적으로 답변 저장 v2 OneToMany 버전")
+    @Transactional
+    void t9_1() {
+        Question q = this.questionRepository.findById(2).get();
+        q.addAnswer("답변 내용1");
+
+    }
+
+    @Test
+    @DisplayName("2번 질문의 답글 조회")
+    void t10(){
+        Question q2 = this.questionRepository.findById(2).get();
+        Answer answer = q2.getAnswers().get(0);
+
+    }
+
 
 }
