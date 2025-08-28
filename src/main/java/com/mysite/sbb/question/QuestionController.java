@@ -16,7 +16,8 @@ public class QuestionController {
     @GetMapping("/question/list")
     public String list(Model model){
         List<Question> questionList = this.questionRepository.findAll();
+//        model.addAttribute("속성명", value); 이 방식으로 값을 담을 수 있다.
         model.addAttribute("questionList",questionList);
-        return "question_List";
+        return "question_list";
     }
 }

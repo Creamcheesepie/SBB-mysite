@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class Question {
     private String subject;
     @Column(columnDefinition = "TEXT")
     private String content;
-
+    private LocalDateTime createDate;
     //EAGER 필요한 데이터를 미리 로딩 -> 불필요한 경우에도 데이터를 미리 가져오게 된다.
     //FetchType.Lazy -> 작성안해도 기본적으로 설정되어 있다.
     //그럼 위의 두 방법 외의 방법은 없는가?
