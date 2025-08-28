@@ -133,9 +133,11 @@ class SbbApplicationTests {
 
     @Test
     @DisplayName("2번 질문의 답글 조회")
+    @Transactional // Transational 을 붙이면 왜 통과?
     void t10(){
-        Question q2 = this.questionRepository.findById(2).get();
-        Answer answer = q2.getAnswers().get(0);
+//        Question q2 = this.questionRepository.findById(2).get();
+        Answer answer = this.questionRepository.findById(2).get().getAnswers().get(0);
+//        Answer answer = q2.getAnswers().get(0);
 
     }
 
