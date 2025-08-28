@@ -1,5 +1,7 @@
 package com.mysite.sbb;
 
+import com.mysite.sbb.answer.Answer;
+import com.mysite.sbb.question.Question;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

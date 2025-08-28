@@ -1,5 +1,7 @@
-package com.mysite.sbb;
+package com.mysite.sbb.question;
 
+import com.mysite.sbb.answer.Answer;
+import com.mysite.sbb.answer.AnswerRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ActiveProfiles("test")
 @SpringBootTest
-class SbbApplicationTests {
+class QuestionRepositoryTest {
 
     @Autowired
     private QuestionRepository questionRepository;
